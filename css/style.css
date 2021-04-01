@@ -1,0 +1,16 @@
+body {
+    background-color:rgb(195, 219, 242);
+}
+
+.custom-hour {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+.custom-save {
+    background-color:rgb(0, 110, 255)
+}
+
+.custom-test {
+    background-color:pink;
+    color:red;
+}
