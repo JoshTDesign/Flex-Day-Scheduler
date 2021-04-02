@@ -20,7 +20,6 @@ var tempDayArray = [];
 
 
 
-
 function getHour() {
 
 }
@@ -30,16 +29,42 @@ function saveHour() {
 }
 
 function initDay() {
+  
+ // $('#1').css('background-color', 'rgb(234,234,234)');
+
+
+
   //get dayArray from local storage
   tempDayArray = JSON.parse(localStorage.getItem('dayArray'));
+
+  //check if there is any array in local storage
+  if (tempDayArray !== null) {
   dayArray = tempDayArray;
+  }
 
   //loop statement to fill each hour from dayArray
-  for (i=0; i<10; i++) {
+  for (i=0; i<dayArray.length; i++) {
     $('#'+i).children('input').attr('placeholder', dayArray[i]);
     }
+  
+  //color each block based on time of day
+  console.log(moment().format('H'));
+  for (i=0; i<dayArray.length; i++) {
+  
+    if (20 < moment().format('H')) {
+      $('#'+i).css('background-color', 'rgb(11,11,11)');
+    } else if (i > moment().format('H')) {
+      $('#'+i).css('background-color', 'rgb(11,11,11)');
+    } else {
+      $('#'+i).css('background-color', 'rgb(11,11,11)');
+    }
+  }
+  }
 
-}
+
+  
+
+
 
 initDay();
 
@@ -56,13 +81,7 @@ $('button').on("click", function(event){
   localStorage.setItem('dayArray', JSON.stringify(dayArray));
 })
 
-// Starting from `<div id="top">`, get a list of its sibling elements and target the fourth one (the `<ul>` element), and append an `<li>` to add "Classmates" to bottom of the list as a new resource.
-//$('#top').siblings().eq(4).append($('<li>Classmates</li>'));
 
-
-//     localStorage.setItem("dayArray", enteredTextField.val());
-//     $(this).parent().css('background-color', 'rgb(122, 242, 242)');
-// })
 
 
 // var enteredTextField = $('#input8');
