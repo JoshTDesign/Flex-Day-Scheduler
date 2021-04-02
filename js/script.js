@@ -4,10 +4,16 @@
 
 //set time refresh at top of page
 setInterval(function(){
-var time = moment().format("hh:mm:ss");
-$("#settime").text(time);
+var time = moment().format("h:mm");
+$("#time").text(time);
 })
 
+setInterval(function(){
+  var day = moment().format("LL");
+  $("#currentDay").text(day);
+  })
+
+//$('input').css('border', '0');
 
 //shortcuts to parts of schedule
 
@@ -19,21 +25,8 @@ var tempDayArray = [];
 
 
 
-
-function getHour() {
-
-}
-
-function saveHour() {
-
-}
-
 function initDay() {
   
- // $('#1').css('background-color', 'rgb(234,234,234)');
-
-
-
   //get dayArray from local storage
   tempDayArray = JSON.parse(localStorage.getItem('dayArray'));
 
@@ -48,15 +41,20 @@ function initDay() {
     }
   
   //color each block based on time of day
-  console.log(moment().format('H'));
   for (i=0; i<dayArray.length; i++) {
   
-    if (20 < moment().format('H')) {
-      $('#'+i).css('background-color', 'rgb(11,11,11)');
-    } else if (i > moment().format('H')) {
-      $('#'+i).css('background-color', 'rgb(11,11,11)');
-    } else {
-      $('#'+i).css('background-color', 'rgb(11,11,11)');
+    if (i+8 < moment().format('H')) {
+      $('#'+i).css('background-color', '#50B53F'); //row color if in past
+      $('#'+i).children('input').css('background-color','#D0FFC9');
+      $('#'+i).children('button').css('background-color','#50B53F');
+    } else if (i+8 > moment().format('H')) {
+      $('#'+i).css('background-color', '#bebebe'); //row color if in future
+      $('#'+i).children('input').css('background-color','#D6D6D6');
+      $('#'+i).children('button').css('background-color','#bebebe');
+    } else if (i+8 == moment().format('H')) {
+      $('#'+i).css('background-color', '#E97962'); //row color is in present
+      $('#'+i).children('input').css('background-color','#EFC0B9');
+      $('#'+i).children('button').css('background-color','#E97962');
     }
   }
   }
@@ -65,43 +63,21 @@ function initDay() {
   
 
 
-
+//function called on page load. Initializes schedule.
 initDay();
 
 
 
-  //setup a click event on the save buttons
+//listens for clicks on any of the save buttons
 $('button').on("click", function(event){
   var hourInput;
-  //var textfield = this.siblings();
-  $(this).siblings().eq(1).attr('placeholder', 'testing!');
+  
+  //receives data from field saves to variable
   hourInput = $(this).siblings().eq(1).val();
+  
   //targets the correct spot in the dayArray to add the text
   dayArray[$(this).attr('id')] = hourInput;
+
+  //sets new data to local storage
   localStorage.setItem('dayArray', JSON.stringify(dayArray));
 })
-
-
-
-
-// var enteredTextField = $('#input8');
-// enteredTextField.css('border-color','rgb(122, 242, 242)');
-// var enteredTextValue = enteredTextField.val();
-// console.log(enteredTextValue);
-
-// topScoresArray.push(currentScoreObject);
-// localStorage.setItem("initScore", JSON.stringify(topScoresArray));
-
-
-
-      // using the event.target, traverse the dom from the button to the textarea
-    // also grab a unique identifier for placing the hour input value into localStorage
-  // on pageload, pull all data from local storage and use the unique labels/identifiers mentioned above to determine where to put the value retrieved from localStorage
-  // for determining css backgroundcolor:
-    // then iterate over all hour elements
-    //use moment to get the current time (specifically the hour)
-    // using an id/data attribute, determining what hour the current timeblock respresents (i.e the 'moment time')
-      // if the current element time is: 
-        // less than moment time, its grey
-        // same as moment time, its red
-        // greater than moment time, its green
