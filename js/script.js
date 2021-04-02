@@ -13,10 +13,6 @@ setInterval(function(){
   $("#currentDay").text(day);
   })
 
-//$('input').css('border', '0');
-
-//shortcuts to parts of schedule
-
 
 //Set global variables
 var dayArray = ['','','','','','','','','',''];
