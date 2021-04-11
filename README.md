@@ -15,3 +15,10 @@ The javascript references Moment.js to track time and programmatically adjust th
 
 ![screenshot](https://user-images.githubusercontent.com/78992027/113389225-7ed6d600-9344-11eb-9c3c-72606764bb03.PNG)
 ![screenshot2](https://user-images.githubusercontent.com/78992027/113389232-8302f380-9344-11eb-8a48-39f421d047f6.PNG)
+
+## Link to project
+https://joshtdesign.github.io/Flex-Day-Scheduler/
+
+### Contact me
+Josh Taylor
+josh@joshtaylordesign.com
